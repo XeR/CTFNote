@@ -32,12 +32,6 @@
       </template>
       <div v-else class="q-ml-xs"><i>No guests found.</i></div>
     </div>
-    <div class="row text-h6">Sync with Discord event</div>
-    <div class="row q-mt-sm">
-      <div style="width: 590px">
-        <discord-event-link-sync :ctf="ctf" class="col" />
-      </div>
-    </div>
   </div>
 </template>
 
@@ -45,10 +39,8 @@
 import { Ctf, Profile, Role } from 'src/ctfnote/models';
 import ctfnote from 'src/ctfnote';
 import { defineComponent, ref } from 'vue';
-import DiscordEventLinkSync from './DiscordEventLinkSync.vue';
 
 export default defineComponent({
-  components: { DiscordEventLinkSync },
   props: {
     ctf: { type: Object as () => Ctf, required: true },
   },

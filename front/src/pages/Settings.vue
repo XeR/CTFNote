@@ -132,54 +132,6 @@
               />
             </q-card-section>
           </q-card>
-
-          <q-card class="q-mt-md">
-            <q-card-section>
-              <div class="text-h6">Link your Discord account</div>
-            </q-card-section>
-
-            <q-card-section class="q-pt-none q-gutter-md">
-              <div v-if="me?.profile.discordId == null">
-                Your CTFNote account is not linked to your Discord account.
-              </div>
-              <div v-else>
-                Your CTFNote account is linked to Discord user ID
-                {{ me?.profile.discordId }}.
-              </div>
-
-              <password-input
-                v-if="me?.profile.discordId == null"
-                v-model="profileToken"
-                dense
-                read-only
-                label="Personal CTFNote token"
-                hint="Give this token to the CTFNote bot to link your account by using /link"
-                @update:visibility="pollMe"
-              >
-                <template #prepend>
-                  <q-icon name="discord" />
-                </template>
-              </password-input>
-            </q-card-section>
-
-            <q-card-actions align="right" class="q-px-md q-pb-md q-pt-none">
-              <q-btn
-                v-if="me?.profile.discordId != null"
-                label="Unlink Discord"
-                color="negative"
-                title="Unlink Discord"
-                :loading="resetDiscordLoading"
-                @click="unlinkDiscord"
-              />
-              <q-btn
-                v-if="me?.profile.discordId == null"
-                color="primary"
-                label="Reset token"
-                title="Reset token"
-                @click="resetToken"
-              />
-            </q-card-actions>
-          </q-card>
         </div>
       </div>
     </div>
