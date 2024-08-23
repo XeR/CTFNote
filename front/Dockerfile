@@ -14,6 +14,10 @@ WORKDIR /usr/src/app
 RUN yarn build
 
 # _--------_
+FROM scratch AS export
+COPY --from=build-deps /usr/src/app/dist/spa /
+
+# _--------_
 FROM nginx@sha256:5ba534070ae1e5e83d52141b11ddced689b476c0001e7205f50979dc0cbdde3d
 
 RUN mkdir -p /logs
