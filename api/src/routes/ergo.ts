@@ -58,8 +58,6 @@ export function ergoRoute(pool: Pool): Handler {
     }
 
     if (isPw) {
-      console.log(accountName, passphrase, ip);
-
       if (typeof accountName !== "string") {
         res.status(400).send("accountName is not a string\n");
         return;
