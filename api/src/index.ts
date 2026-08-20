@@ -16,6 +16,7 @@ import uploadLogoPlugin from "./plugins/uploadLogo";
 import uploadScalar from "./plugins/uploadScalar";
 import { Pool } from "pg";
 import { icalRoute } from "./routes/ical";
+import { ergoRoute } from "./routes/ergo";
 import ConnectionFilterPlugin from "postgraphile-plugin-connection-filter";
 import OperationHook from "@graphile/operation-hooks";
 import discordHooks from "./discord/hooks";
@@ -116,6 +117,7 @@ function createApp(postgraphileOptions: PostGraphileOptions) {
 
   const app = express();
   app.use(graphqlUploadExpress());
+  app.use(express.json());
   app.use(
     "/uploads",
     express.static("uploads", {
@@ -126,6 +128,7 @@ function createApp(postgraphileOptions: PostGraphileOptions) {
   );
   app.use(postgraphile(pool, "ctfnote", postgraphileOptions));
   app.use("/calendar.ics", icalRoute(pool));
+  app.use("/ergo", ergoRoute(pool));
   return app;
 }
 
